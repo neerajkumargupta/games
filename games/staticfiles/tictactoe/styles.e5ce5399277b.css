@@ -1,0 +1,25 @@
+h1 {
+    font-family: 'Times New Roman';
+    font-size: 90px;
+    text-align: center;
+    text-shadow: indianred;
+    color: grey;
+}
+
+body {
+    background-color: royalblue;
+}
+
+table {
+    border-collapse: collapse;
+}
+td {
+    border: 1px solid black;
+    width: 150px;
+    height: 150px;
+    font-size: 30px;
+    text-align: center;
+}
+td > a {
+    font-size: 18px;
+}
