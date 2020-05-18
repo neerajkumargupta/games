@@ -1,0 +1,5 @@
+Django
+dj-database-url
+dj-static
+werkzeug==0.16.0
+gunicorn
