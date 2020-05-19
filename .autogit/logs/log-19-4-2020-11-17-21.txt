@@ -1,0 +1,16 @@
+-------------------- Auto-Git Log --------------------
+		Tue May 19 2020 11:17:21 GMT+0530 (India Standard Time)
+------------------------------------------------------
+
+Modified files:
+* games/games/urls.py
+
+
+Created files:
+* .autogit/logs/log-19-4-2020-10-17-10.txt
+
+
+Deleted files:
+
+
+Renamed files:
