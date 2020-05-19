@@ -4,3 +4,4 @@ dj-static
 whitenoise
 werkzeug==0.16.0
 gunicorn
+django_heroku
