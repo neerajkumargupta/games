@@ -1,9 +1,0 @@
-{% extends "tictactoe/layout.html" %}
-{% block body %}
-   <h1> Add Players</h1>
-   <form action="{% url 'tictactoe:index' %}" method='post'>
-       {% csrf_token %}
-       {{ form }}
-       <input type="submit">
-   </form>
-{% endblock %}>
