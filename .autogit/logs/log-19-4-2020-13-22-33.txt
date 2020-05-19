@@ -1,0 +1,16 @@
+-------------------- Auto-Git Log --------------------
+		Tue May 19 2020 13:22:33 GMT+0530 (India Standard Time)
+------------------------------------------------------
+
+Modified files:
+
+
+Created files:
+* games/templates/games/index.html
+* games/views.py
+
+
+Deleted files:
+
+
+Renamed files:
