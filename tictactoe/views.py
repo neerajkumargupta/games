@@ -54,11 +54,18 @@ def play(request):
 
         print(f"play current value of in session {request.session.items()}")
 
-        if terminal(request):
-            winner = winner(request)
+        board = request.session["board"]
+        player1 = request.session["player1"]
+        player2 request.session["player2"]
+
+        if terminal(board,player1,player2):
+            winner = winnerboard,player1,player2)
             if x == winner or y == winner:
                print(" Winner is " + winner)
-               
+               return render(request, "tictactoe/winner.html", {
+                    "winner": winner,
+                    "game":request.session["board"]
+                })
 
 
         request.session["board"][x][y] = request.session["turn"]
@@ -87,16 +94,13 @@ def reset(request):
         request.session["turn"] = request.session["player1"]
         return HttpResponseRedirect(reverse("tictactoe:gameboard"))
 
-def winner(request):
+def winner(board,player1,player2):
     """
     Returns the winner of the game, if there is one.
     """
     columns = []
     # Checks rows
-    board = request.session.['board']
-    player1 = request.session["player1"]
-    player2 = request.session["player2"]
-
+    
     for row in board:
         xcounter = row.count(player1)
         ocounter = row.count(player2)
@@ -132,18 +136,18 @@ def winner(request):
     return None
 
 
-def terminal(request):
+def terminal(board, player1, player2):
     """
     Returns True if game is over, False otherwise.
     """
     # Checks if board is full or if there is a winner
     empty_counter = 0
-    board = request.session['board']
+    #board = request.session['board']
     for row in board:
         empty_counter += row.count(None)
     if empty_counter == 0:
         return True
-    elif winner(board) is not None:
+    elif winner(board,player1,player2) is not None:
         return True
     else:
         return False
