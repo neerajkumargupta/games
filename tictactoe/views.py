@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django import forms
 from django.http import HttpResponseRedirect
 from django.urls  import reverse
+import math
+import copy
 
 class newGameForm(forms.Form):
     player1 = forms.CharField(label="Player1")
@@ -52,6 +54,9 @@ def play(request):
 
         print(f"play current value of in session {request.session.items()}")
 
+        if terminal(request):
+
+
         request.session["board"][x][y] = request.session["turn"]
         print("Player 1  " +  request.session["player1"])
         print("Player 2  " +  request.session["player2"])
@@ -78,4 +83,64 @@ def reset(request):
         request.session["turn"] = request.session["player1"]
         return HttpResponseRedirect(reverse("tictactoe:gameboard"))
 
+def winner(request):
+    """
+    Returns the winner of the game, if there is one.
+    """
+    columns = []
+    # Checks rows
+    board = request.session.['board']
+    player1 = request.session["player1"]
+    player2 = request.session["player2"]
+
+    for row in board:
+        xcounter = row.count(player1)
+        ocounter = row.count(player2)
+        if xcounter == 3:
+            return player1
+        if ocounter == 3:
+            return player2
+
+    # Checks columns
+    for j in range(len(board)):
+        column = [row[j] for row in board]
+        columns.append(column)
+
+    for j in columns:
+        xcounter = j.count(player1)
+        ocounter = j.count(player2)
+        if xcounter == 3:
+            return player1
+        if ocounter == 3:
+            return player2
+
+    # Checks diagonals
+    if board[0][0] == player2 and board[1][1] == player2 and board[2][2] == player2:
+        return player2
+    if board[0][0] == player1 and board[1][1] == player1 and board[2][2] == player1:
+        return player1
+    if board[0][2] == player2 and board[1][1] == player2 and board[2][0] == player2:
+        return player2
+    if board[0][2] == player1 and board[1][1] == player1 and board[2][0] == player1:
+        return player1
+
+    # No winner/tie
+    return None
+
+
+def terminal(request):
+    """
+    Returns True if game is over, False otherwise.
+    """
+    # Checks if board is full or if there is a winner
+    empty_counter = 0
+    board = request.session['board']
+    for row in board:
+        empty_counter += row.count(None)
+    if empty_counter == 0:
+        return True
+    elif winner(board) is not None:
+        return True
+    else:
+        return False
     
