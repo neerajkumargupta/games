@@ -21,7 +21,6 @@ app_name = "games"
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('tictactoe/', include("tictactoe.urls")),
+    path('tictactoe/', include("tictactoe.urls",namespace="tictactoe")),
     path('', views.index, name='index'),
-    
 ]
