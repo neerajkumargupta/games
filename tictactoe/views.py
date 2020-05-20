@@ -55,6 +55,10 @@ def play(request):
         print(f"play current value of in session {request.session.items()}")
 
         if terminal(request):
+            winner = winner(request)
+            if x == winner or y == winner:
+               print(" Winner is " + winner)
+               
 
 
         request.session["board"][x][y] = request.session["turn"]

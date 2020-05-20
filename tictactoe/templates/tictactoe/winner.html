@@ -1,0 +1,21 @@
+
+{% extends "tictactoe/layout.html" %}
+
+{% block body %}
+        <table>
+        {% for i in game %}
+        <tr>
+        {% for j in i %}
+        <td>  
+          {{ j }}
+        </td>
+        {% endfor %}
+        </tr>
+    {% endfor %}
+  </table>
+
+  <h1> Winner is {{ winner }}</h1>
+<a href="{% url 'tictactoe:load' %}">Back</a>
+
+{% endblock %}
+
