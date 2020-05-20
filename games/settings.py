@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'games',
     'tictactoe',
     'whitenoise.runserver_nostatic',
     'django.contrib.admin',
